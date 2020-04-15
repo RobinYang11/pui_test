@@ -1,20 +1,33 @@
-
-
 const path = require('path');
+const yargs =require("yargs");
+
+const argv = yargs.alias('env','enviroment').argv
+
 
 module.exports ={
-	entry:'./src/index.js',
+	entry:'./src/index.ts',
 	output:{
 		filename:'[name].js',
 		path:path.resolve(__dirname,"./dist")
 	},
+	mode:argv.env,
 	resolve:{
-		extenstions:['.tsx','.ts','.js']
+		extensions:['.tsx','.ts','.js']
+	},
+	devServer:{
+		contentBase:'./dist',
+		hot:true,
+		prot:3000
 	},
 	module:{
-
+		rules:[
+			{
+				test:/\.ts?$|\.tsx?$/,
+				loaders:["babel-loader","ts-loader"]
+			}
+		]
 	},
-	plugin:[
-		
+	plugins:[
+
 	]
 }
