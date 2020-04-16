@@ -1,6 +1,7 @@
 const path = require('path');
 const yargs = require("yargs");
-const htmlWebpackPlugin = require('html-webpack-plugin')
+const htmlWebpackPlugin = require('html-webpack-plugin');
+const cleanWebpackPlugin = require("clean-webpack-plugin");
 
 const argv = yargs.alias('env', 'enviroment').argv
 
@@ -8,7 +9,7 @@ module.exports = {
 	entry: './src/index.js',
 	output: {
 		filename: '[name].js',
-		path: path.resolve(__dirname, "./dist")
+		path: path.resolve(__dirname, "dist")
 	},
 	mode: argv.env,
 	resolve: {
@@ -40,6 +41,7 @@ module.exports = {
 		]
 	},
 	plugins: [
+		// new cleanWebpackPlugin(),
 		new htmlWebpackPlugin({
 			title: "PUI",
 			template: "./site/index.html"

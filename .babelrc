@@ -1,19 +1,15 @@
 {
   "presets": [
+    // "@babel/react",
+    // "@babel/env"
+  ],
+  "plugins": [
     [
-      "env",
+      "transform-react-jsx",
       {
-        "targets": {
-          "chrome": "60"
-        }
+        "pragma": "preact",
+        "pragmaFrag":"Fragment"
       }
     ]
   ]
-  // ,
-  // "plugins": [
-  //   ["@babel/plugin-transform-react-jsx", {
-  //     "pragma": "h",
-  //     "pragmaFrag": "Fragment"
-  //   }]
-  // ]
 }
