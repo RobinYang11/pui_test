@@ -2,11 +2,15 @@
 // import renderDom from 'react-dom'
 // import Button from './components/Button';
 
-import {h} from 'preact';
 
-import {Component,render} from 'preact';
+
+
+
+import {Component,render,h} from 'preact';
+// import preact from 'preact'
+import Moment from 'moment'
 
 function Test(){
   return <div>test</div>
 }
-render(<Test/>,document.getElementById("reactApp"))
+render(<Test/>,document.getElementById("reactApp"));
