@@ -1,6 +1,6 @@
-import React from 'react';
+import * as react from 'react';
 
- class Button extends React.Component {
+ class Button extends react.Component {
 
 	render() {
 		return (
