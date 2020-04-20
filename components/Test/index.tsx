@@ -16,6 +16,7 @@ class Test extends React.Component<ITestProps,ItestState>{
       <div>
         <h1>{this.props.name}</h1>
         <h3>{this.props.age}</h3>
+        <button>hello robin</button>
       </div>
     )
   }
