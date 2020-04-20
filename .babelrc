@@ -1,15 +1,9 @@
 {
   "presets": [
-    // "@babel/react",
-    // "@babel/env"
+    "@babel/react",
+    "@babel/env"
   ],
   "plugins": [
-    [
-      "transform-react-jsx",
-      {
-        "pragma": "preact",
-        "pragmaFrag":"Fragment"
-      }
-    ]
+   
   ]
 }

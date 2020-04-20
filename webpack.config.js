@@ -6,7 +6,7 @@ const cleanWebpackPlugin = require("clean-webpack-plugin");
 const argv = yargs.alias('env', 'enviroment').argv
 
 module.exports = {
-	entry: './src/index.js',
+	entry: './src/index.jsx',
 	output: {
 		filename: '[name].js',
 		path: path.resolve(__dirname, "dist")
