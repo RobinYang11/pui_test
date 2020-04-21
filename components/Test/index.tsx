@@ -1,4 +1,5 @@
 import React from 'react';
+import "./style.less"
 
 interface ITestProps {
   name:string ;
@@ -13,10 +14,10 @@ interface ItestState{
 class Test extends React.Component<ITestProps,ItestState>{
   render(){
     return(
-      <div>
-        <h1>{this.props.name}</h1>
-        <h3>{this.props.age}</h3>
-        <button>hello robin</button>
+      <div className="test">
+        <h1 className="b">{this.props.name}</h1>
+        <h3>{this.props.age} robin</h3>
+        <button>hello robin!</button>
       </div>
     )
   }

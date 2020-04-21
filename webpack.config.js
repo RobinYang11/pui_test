@@ -3,8 +3,10 @@ const yargs = require("yargs");
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const cleanWebpackPlugin = require("clean-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-
 const argv = yargs.alias('env', 'enviroment').argv
+
+const port = 3000;
+
 
 module.exports = {
 	entry: './src/index.jsx',
@@ -15,18 +17,12 @@ module.exports = {
 	mode: argv.env,
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js'],
-		"alias": {
-			// "react": "preact/compat",
-			// "react-dom/test-utils": "preact/test-utils",
-			// "react-dom": "preact/compat",
-			// Must be below test-utils
-		},
 	},
 	devServer: {
 		contentBase: './dist',
 		hot: true,
 		port: 3000,
-		quiet:true, //隐藏打包信息 ，配合友好提示插件
+		quiet: true, //隐藏打包信息 ，配合友好提示插件
 	},
 	module: {
 		rules: [
@@ -39,20 +35,29 @@ module.exports = {
 				loader: [
 					"babel-loader"
 				],
+			},
+			{
+				test: /\.less$/,
+				use: [{
+					loader: "style-loader" // creates style nodes from JS strings
+				}, {
+					loader: "css-loader" // translates CSS into CommonJS
+				}, {
+					loader: "less-loader" // compiles Less to CSS
+				}]
 			}
 		]
 	},
 	plugins: [
-		// new cleanWebpackPlugin(),
 		new FriendlyErrorsWebpackPlugin({
-			compilationSuccessInfo:{
-				messages:["hello"],
-				notes:["notes"]
+			compilationSuccessInfo: {
+				messages: [`you app running on localhost:${port}`],
+				notes: ["notes"]
 			},
-			onErrors:function(a,b){
+			onErrors: function (a, b) {
 
 			},
-			clearConsole:true,
+			clearConsole: true,
 		}),
 		new htmlWebpackPlugin({
 			title: "PUI",

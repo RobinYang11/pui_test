@@ -1,12 +1,17 @@
-
-
 import React from 'react';
 import ReactDom from 'react-dom';
-import { Test } from '../components/index'
+import { Test, Container ,Row} from '../components/index';
 
 ReactDom.render(
   <div>
-    <Test name="robin" age={33} />
+    <Container type="b">
+      <Test name="robin" age={33} />
+    </Container>
+    <Container>
+      <Row>
+        robin
+      </Row>
+    </Container>
   </div>,
   document.getElementById("reactApp")
 );
