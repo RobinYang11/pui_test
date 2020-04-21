@@ -1,10 +1,10 @@
+const htmlWebpackPlugin = require('html-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+
 const path = require('path');
 const yargs = require("yargs");
-const htmlWebpackPlugin = require('html-webpack-plugin');
-const cleanWebpackPlugin = require("clean-webpack-plugin");
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const argv = yargs.alias('env', 'enviroment').argv
-
 const port = 3000;
 
 
@@ -34,21 +34,41 @@ module.exports = {
 				test: /\.jsx?$|\.js?$/,
 				loader: [
 					"babel-loader"
-				],
+				]
 			},
 			{
 				test: /\.less$/,
-				use: [{
-					loader: "style-loader" // creates style nodes from JS strings
-				}, {
-					loader: "css-loader" // translates CSS into CommonJS
-				}, {
-					loader: "less-loader" // compiles Less to CSS
-				}]
+				use: [
+					{
+						loader: ExtractCssChunks.loader,
+						options:{
+							publicPath: '/dist',
+						}
+					},
+					'less-loader'
+				]
+			},
+			{
+				test: /\.css$/,
+				use: [
+					{
+						loader: ExtractCssChunks.loader,
+						options:{
+							publicPath: '/dist',
+						}
+					},
+					'css-loader'
+				]
 			}
 		]
 	},
 	plugins: [
+		new ExtractCssChunks({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
 		new FriendlyErrorsWebpackPlugin({
 			compilationSuccessInfo: {
 				messages: [`you app running on localhost:${port}`],
@@ -62,6 +82,6 @@ module.exports = {
 		new htmlWebpackPlugin({
 			title: "PUI",
 			template: "./site/index.html"
-		}),
+		})
 	]
 }

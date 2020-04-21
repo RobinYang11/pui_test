@@ -1,6 +1,6 @@
 
 import React from 'react';
-import "./style.less";
+import "./style.css";
 
 interface IContainerProps {
   type: String,
