@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { render } from 'react-dom';
 
 interface ITableProps{
   data:Array<object>,
@@ -24,3 +23,5 @@ function Table(props:ITableProps){
     </table>
   </div>)
 }
+
+export default Table;
