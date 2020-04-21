@@ -1,6 +1,6 @@
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const path = require('path');
 const yargs = require("yargs");
@@ -39,36 +39,20 @@ module.exports = {
 			{
 				test: /\.less$/,
 				use: [
-					{
-						loader: ExtractCssChunks.loader,
-						options:{
-							publicPath: '/dist',
-						}
-					},
-					'less-loader'
-				]
-			},
-			{
-				test: /\.css$/,
-				use: [
-					{
-						loader: ExtractCssChunks.loader,
-						options:{
-							publicPath: '/dist',
-						}
-					},
-					'css-loader'
+					MiniCssExtractPlugin.loader,
+					{ loader: "css-loader" },
+					{ loader: "less-loader" }
 				]
 			}
 		]
 	},
 	plugins: [
-		new ExtractCssChunks({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: '[name].css',
-      chunkFilename: '[id].css',
-    }),
+		new MiniCssExtractPlugin({
+			// Options similar to the same options in webpackOptions.output
+			// both options are optional
+			filename: '[name].css',
+			chunkFilename: '[id].css',
+		}),
 		new FriendlyErrorsWebpackPlugin({
 			compilationSuccessInfo: {
 				messages: [`you app running on localhost:${port}`],
