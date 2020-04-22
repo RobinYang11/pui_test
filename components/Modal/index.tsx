@@ -8,7 +8,7 @@ interface IModalProps {
   onClose?: () => void;
   onSure?: () => void;
   width?: string;
-  style: object;
+  style?: object;
 }
 
 function Modal(props: IModalProps) {
@@ -17,12 +17,18 @@ function Modal(props: IModalProps) {
    */
   document.body.style.overflow = props.visible ? 'hidden' : 'auto';
 
-  if(!props.visible){
+  if (!props.visible) {
     return null;
   }
 
   return (<div className="robin-modal">
-    <div className="mask"></div>
+    <div
+      onClick={(e) => {
+        console.log("robin");
+        e.stopPropagation();
+        props.onClose();
+      }}
+      className="mask"></div>
     <div className="content-wrapper">
       <div className="content"
         style={{
@@ -30,9 +36,11 @@ function Modal(props: IModalProps) {
           ...props.style,
         }}
       >
-        <span 
-        onClick={props.onClose}
-        className="close-btn">
+        <span
+          onClick={(e) => {
+            props.onClose();
+          }}
+          className="close-btn">
           X
         </span>
         {

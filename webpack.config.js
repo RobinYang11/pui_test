@@ -78,7 +78,7 @@ module.exports = {
 			clearConsole: true,
 		}),
 		new htmlWebpackPlugin({
-			title: "PUI",
+			title: "robinUI",
 			template: "./site/index.html"
 		})
 	]

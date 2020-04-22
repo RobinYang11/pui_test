@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import '../static/iconfont';
-import { Table, ImageViewer, Modal } from '../components/index'
-const { Provider, Consumer } = React.createContext({})
+import { Table, ImageViewer, Modal, Icon } from '../components/index';
 
-
+const { Provider, Consumer } = React.createContext({});
 
 class App extends React.Component {
 
@@ -12,6 +11,37 @@ class App extends React.Component {
     visible: false,
     data: [
       {
+        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
+        title: "小黄鸡",
+      },
+      {
+        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
+        title: "小黄鸡",
+      }, {
+        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
+        title: "小黄鸡",
+      }, {
+        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
+        title: "小黄鸡",
+      }, {
+        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
+        title: "小黄鸡",
+      }, {
+        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
+        title: "小黄鸡",
+      }, {
+        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
+        title: "小黄鸡",
+      }, {
+        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
+        title: "小黄鸡",
+      }, {
+        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
+        title: "小黄鸡",
+      }, {
+        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
+        title: "小黄鸡",
+      }, {
         img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
         title: "小黄鸡",
       },
@@ -32,15 +62,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <svg className="icon" aria-hidden="true">
-          <use xlinkHref="#icon-xiangshang-yuan"></use>
-        </svg>
-      <button onClick={() => { this.setState({ visible: true }) }}>show modal</button>
-      <Modal
-        onClose={() => { this.setState({ visible: false }) }}
-        visible={this.state.visible}>
-        <h1>this is modal content</h1>
-      </Modal>
+        <ImageViewer images={this.state.data} />
       </div >
     )
   }
