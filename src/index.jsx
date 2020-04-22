@@ -13,34 +13,6 @@ class App extends React.Component {
       {
         img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
         title: "小黄鸡",
-      },
-      {
-        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
-        title: "小黄鸡",
-      }, {
-        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
-        title: "小黄鸡",
-      }, {
-        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
-        title: "小黄鸡",
-      }, {
-        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
-        title: "小黄鸡",
-      }, {
-        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
-        title: "小黄鸡",
-      }, {
-        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
-        title: "小黄鸡",
-      }, {
-        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
-        title: "小黄鸡",
-      }, {
-        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
-        title: "小黄鸡",
-      }, {
-        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
-        title: "小黄鸡",
       }, {
         img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
         title: "小黄鸡",

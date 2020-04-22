@@ -24,7 +24,6 @@ function Modal(props: IModalProps) {
   return (<div className="robin-modal">
     <div
       onClick={(e) => {
-        console.log("robin");
         e.stopPropagation();
         props.onClose();
       }}
