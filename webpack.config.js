@@ -43,6 +43,20 @@ module.exports = {
 					{ loader: "css-loader" },
 					{ loader: "less-loader" }
 				]
+			},
+			{
+				test: /\.(gif|jpg|jpeg|png|svg)$/,
+				use: [{
+					loader: 'url-loader',
+					options: {
+						limit: 1024,
+						name: '[name]-robin.[ext]'
+					}
+				}]
+			},
+			{
+				test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+				loader: 'url-loader'
 			}
 		]
 	},

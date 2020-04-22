@@ -1,27 +1,41 @@
 
 import React from 'react';
 
-interface ITableProps{
-  data:Array<object>,
-  column:Array<{
-    key:any,
-    keyProperty:string,
-  }>,
-  size:number
+interface ITableProps {
+  data: Array<object>,
+  column: Array<IColumn>,
+  size: number
+}
+
+interface IColumn {
+  key: any,
+  keyProperty: string,
+  title: string,
+  render: React.ReactElement
 }
 
 
-function Table(props:ITableProps){
+function renderHeader(col: Array<object>): Array<React.ReactElement> {
+  return col.map((i: IColumn) => {
+    if (i.render) {
+      return <th>{i.render}</th>
+    }
+    return (<th key={i.key}>{i.title}</th>)
+  })
+}
 
-  const {data,column,size} = props;
+function Table(props: ITableProps) {
+  const { data, column, size } = props;
+  return (<table>
+    <thead>
+      <tr>
+        {renderHeader(column)}
+      </tr>
+    </thead>
+    <tbody>
 
-  return(<div>
-    <table>
-      <thead>
-        
-      </thead>
-    </table>
-  </div>)
+    </tbody>
+  </table>)
 }
 
 export default Table;
