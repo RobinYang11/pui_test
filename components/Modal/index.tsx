@@ -24,11 +24,19 @@ function Modal(props: IModalProps) {
   return (<div className="robin-modal">
     <div
       onClick={(e) => {
-        e.stopPropagation();
+        // e.stopPropagation();
         props.onClose();
       }}
       className="mask"></div>
-    <div className="content-wrapper">
+    <div
+      onClick={(e) => {
+        if(e.target === e.currentTarget){
+          e.stopPropagation();
+          props.onClose();
+        }
+      }}
+
+      role="document" className="content-wrapper">
       <div className="content"
         style={{
           width: props.width || "400px",

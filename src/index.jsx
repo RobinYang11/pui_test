@@ -10,10 +10,7 @@ class App extends React.Component {
   state = {
     visible: false,
     data: [
-      {
-        img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
-        title: "小黄鸡",
-      }, {
+    {
         img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
         title: "小黄鸡",
       },
@@ -34,7 +31,15 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <ImageViewer images={this.state.data} />
+        <button onClick={()=>{this.setState({visible:true})}}>show mdoal</button>
+        {/* <ImageViewer images={this.state.data} /> */}
+        <Modal 
+        onClose={()=>{this.setState({visible:false})}}
+        visible={this.state.visible}>
+          <div style={{background:'white',height:"300px"}}>
+            title
+          </div>
+        </Modal>
       </div >
     )
   }
