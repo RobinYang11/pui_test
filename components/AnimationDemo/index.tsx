@@ -1,6 +1,6 @@
 import React from 'react'
+import { TransitionGroup, CSSTransition} from 'react-transition-group'
 
-import { Motion, spring } from 'react-motion';
 // In your render...
 
 
@@ -15,7 +15,14 @@ class AnimationDemo extends React.Component<{}, {}>{
   render() {
     return (
       <div>
-        <div className="p-par"></div>
+        <CSSTransition
+          classNames="test"
+          timeout={{ enter: 500, exit: 300 }}
+        >
+          <div>
+            test
+          </div>
+        </CSSTransition>
       </div>
     )
   }
