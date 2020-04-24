@@ -1,25 +1,24 @@
 import React from 'react'
 import { TransitionGroup, CSSTransition} from 'react-transition-group'
-
+import './style.less'
 // In your render...
 
 
 class AnimationDemo extends React.Component<{}, {}>{
 
-
-  increase =()=>{
-
-    
-
-  }
+ 
   render() {
     return (
       <div>
         <CSSTransition
-          classNames="test"
-          timeout={{ enter: 500, exit: 300 }}
+          in={true}
+          classNames="fade"
+          timeout={1000}
+          appear={true}
         >
-          <div>
+          <div style={{
+            background:"grey"
+          }}>
             test
           </div>
         </CSSTransition>
@@ -27,13 +26,5 @@ class AnimationDemo extends React.Component<{}, {}>{
     )
   }
 }
-
-
-
-// function AnimationDemo(props){
-//   return (<div>
-//     demo
-//   </div>)
-// }
 
 export default AnimationDemo;

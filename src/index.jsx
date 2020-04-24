@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import '../static/iconfont';
-import { Table, ImageViewer, Modal, Icon } from '../components/index';
+import { Table, ImageViewer, Modal, Icon ,AnimationDemo } from '../components/index';
 
 const { Provider, Consumer } = React.createContext({});
 
@@ -31,16 +31,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={()=>{this.setState({visible:true})}}>show mdoal</button>
-        {/* <ImageViewer images={this.state.data} /> */}
-        <Modal 
-        onClose={()=>{this.setState({visible:false})}}
-        visible={this.state.visible}>
-          <div style={{background:'white',height:"300px"}}>
-            title
-          </div>
-        </Modal>
-      </div >
+        <AnimationDemo/>
+      </div>
     )
   }
 }
