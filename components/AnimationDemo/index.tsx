@@ -6,12 +6,16 @@ import { Motion, spring } from 'react-motion';
 
 class AnimationDemo extends React.Component<{}, {}>{
 
+
+  increase =()=>{
+
+    
+
+  }
   render() {
     return (
       <div>
-        <Motion defaultStyle={{ x: 0 }} style={{ x: spring(10) }}>
-          {value => <div>{value.x}</div>}
-        </Motion>
+        <div className="p-par"></div>
       </div>
     )
   }

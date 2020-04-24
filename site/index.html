@@ -1,11 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    #an {
+      height: 40px;
+      width: 40px;
+      background-color: red;
+    }
+
+    #black {
+      height: 40px;
+      width: 40px;
+      background-color: black;
+      position: absolute;
+    }
+  </style>
 </head>
+
 <body>
   <div id="reactApp"></div>
+  <div id="an"></div>
+  <div id="black"></div>
+  <button onclick="stopAnimation();">stop </button>
+  <button onclick="startAnimation();">start</button>
+  <script>
+    var start = null;
+    var element = document.getElementById('an');
+    element.style.position = 'absolute';
+    var stopId;
+
+    function step(timestamp) {
+      // timestamp 是一个离散的时间差
+      if (!start) start = timestamp;
+      var progress = timestamp - start;
+      element.style.left = Math.min(progress / 10, 2000) + 'px';
+      element.style.top = Math.min(progress / 10, 2000) + 'px';
+      stopId = window.requestAnimationFrame(step);
+      if (progress > 2000) {
+        stopAnimation();
+      }
+    }
+
+    function stopAnimation() {
+      cancelAnimationFrame(stopId);
+    }
+
+    function startAnimation() {
+      window.requestAnimationFrame(step);
+    }
+
+    (function () {
+      var b = document.getElementById("black")
+      var left = 0;
+      setInterval(function () {
+        b.style.left = `${left}px`;
+        left++;
+      }, 1000 / 40)
+      //离散值约大，越卡顿
+    })()
+    
+  </script>
 </body>
+
 </html>
