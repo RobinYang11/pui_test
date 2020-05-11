@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import '../static/iconfont';
-import { Table, ImageViewer, Modal, Icon ,AnimationDemo } from '../components/index';
+import { Table, ImageViewer, Modal, Icon, AnimationDemo } from '../components/index';
 
 const { Provider, Consumer } = React.createContext({});
 
@@ -10,7 +10,7 @@ class App extends React.Component {
   state = {
     visible: false,
     data: [
-    {
+      {
         img: 'http://image.biaobaiju.com/uploads/20180802/03/1533152912-BmPIzdDxuT.jpg',
         title: "小黄鸡",
       },
@@ -28,10 +28,23 @@ class App extends React.Component {
     ]
   }
 
+  toggle = () => {
+    this.setState({
+      visible: !this.state.visible,
+    })
+  }
+
   render() {
     return (
       <div>
-        <AnimationDemo/>
+        <button onClick={this.toggle}>tg</button>
+        <Modal
+          onClose={() => { this.setState({ visible: false }) }}
+          visible={this.state.visible}>
+          <div style={{ height: '200px', background: "red" }}>
+            robin
+         </div>
+        </Modal>
       </div>
     )
   }

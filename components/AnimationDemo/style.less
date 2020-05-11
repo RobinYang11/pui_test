@@ -1,19 +1,17 @@
-
-.fade-appear{
+.alert-enter {
   opacity: 0;
-  z-index: 1;
+  transform: scale(0.9);
 }
-.fade-appear.fade-appear-active{
+.alert-enter-active {
   opacity: 1;
-  transition: opacity 300ms linear;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
 }
-
-.fade-enter{
+.alert-exit {
+  opacity: 1;
+}
+.alert-exit-active {
   opacity: 0;
-  z-index: 1;
-}
-
-.fade-enter.fade-enter-active{
-  opacity: 1;
-  transition: opacity 300ms linear;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
 }

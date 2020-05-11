@@ -1,5 +1,6 @@
-import React from 'react';
-import './style.less'
+import React, { useState } from 'react';
+import './style.less';
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 interface IModalProps {
   visible: boolean;
@@ -16,46 +17,65 @@ function Modal(props: IModalProps) {
    * when modal show ,set body unscrollable!
    */
   document.body.style.overflow = props.visible ? 'hidden' : 'auto';
+  const [visible, setVisible] = useState(false);
+  
+  // if (!props.visible) {
+  //   return null;
+  // }
 
-  if (!props.visible) {
-    return null;
-  }
-
-  return (<div className="robin-modal">
-    <div
-      onClick={(e) => {
-        // e.stopPropagation();
+  return ( 
+    <CSSTransition
+      in={props.visible}
+      classNames="alert"
+      timeout={300}
+      unmountOnExit
+      onEnter={() => {
+        console.log("onEnter")
+        // props.onClose()
+      }}
+      
+      onExit={()=>{
+        console.log("onExit");
         props.onClose();
       }}
-      className="mask"></div>
-    <div
-      onClick={(e) => {
-        if(e.target === e.currentTarget){
-          e.stopPropagation();
-          props.onClose();
-        }
-      }}
-
-      role="document" className="content-wrapper">
-      <div className="content"
-        style={{
-          width: props.width || "400px",
-          ...props.style,
-        }}
-      >
-        <span
+    >
+      <div className="robin-modal">
+        <div
           onClick={(e) => {
+            // e.stopPropagation();
             props.onClose();
           }}
-          className="close-btn">
-          X
-        </span>
-        {
-          props.children
-        }
+          className="mask"></div>
+        <div
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              e.stopPropagation();
+              props.onClose();
+            }
+          }}
+
+          role="document" className="content-wrapper">
+          <div className="content"
+            style={{
+              width: props.width || "400px",
+              ...props.style,
+            }}
+          >
+            <span
+              onClick={(e) => {
+                props.onClose();
+              }}
+              className="close-btn">
+              X
+            </span>
+            {
+              props.children
+            }
+          </div>
+        </div>
       </div>
-    </div>
-  </div>)
+    </CSSTransition>
+  )
 }
 
 export default Modal;
