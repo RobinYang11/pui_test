@@ -16,7 +16,7 @@ function Modal(props: IModalProps) {
   /**
    * when modal show ,set body unscrollable!
    */
-  document.body.style.overflow = props.visible ? 'hidden' : 'auto';
+  // document.body.style.overflow = props.visible ? 'hidden' : 'auto';
   const [visible, setVisible] = useState(false);
   
   // if (!props.visible) {
