@@ -41,7 +41,7 @@ class App extends React.Component {
         <Modal
           onClose={() => { this.setState({ visible: false }) }}
           visible={this.state.visible}>
-          <div style={{ height: '200px', background: "red" }}>
+          <div style={{ height: '200px', background: "white" }}>
             robin
          </div>
         </Modal>

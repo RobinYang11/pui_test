@@ -18,34 +18,36 @@ function Modal(props: IModalProps) {
    */
   // document.body.style.overflow = props.visible ? 'hidden' : 'auto';
   const [visible, setVisible] = useState(false);
-  
+
   // if (!props.visible) {
   //   return null;
   // }
 
-  return ( 
-    <CSSTransition
-      in={props.visible}
-      classNames="alert"
-      timeout={300}
-      unmountOnExit
-      onEnter={() => {
-        console.log("onEnter")
-        // props.onClose()
-      }}
-      
-      onExit={()=>{
-        console.log("onExit");
-        props.onClose();
-      }}
-    >
-      <div className="robin-modal">
-        <div
-          onClick={(e) => {
-            // e.stopPropagation();
-            props.onClose();
-          }}
-          className="mask"></div>
+  return (
+    <div className="robin-modal">
+      {props.visible ?<div
+        onClick={(e) => {
+          // e.stopPropagation();
+          props.onClose();
+        }}
+        className="mask"
+      >
+      </div>:''}
+      <CSSTransition
+        in={props.visible}
+        classNames="alert"
+        timeout={300}
+        unmountOnExit
+        onEnter={() => {
+          console.log("onEnter")
+          // props.onClose()
+        }}
+        onExit={() => {
+          console.log("onExit");
+          props.onClose();
+        }}
+      >
+
         <div
           onClick={(e) => {
             if (e.target === e.currentTarget) {
@@ -53,7 +55,6 @@ function Modal(props: IModalProps) {
               props.onClose();
             }
           }}
-
           role="document" className="content-wrapper">
           <div className="content"
             style={{
@@ -73,8 +74,8 @@ function Modal(props: IModalProps) {
             }
           </div>
         </div>
-      </div>
-    </CSSTransition>
+      </CSSTransition>
+    </div>
   )
 }
 
