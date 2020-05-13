@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './style.less';
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 
 interface IModalProps {
   visible: boolean;
@@ -16,7 +16,7 @@ function Modal(props: IModalProps) {
   /**
    * when modal show ,set body unscrollable!
    */
-  // document.body.style.overflow = props.visible ? 'hidden' : 'auto';
+  document.body.style.overflow = props.visible ? 'hidden' : 'auto';
   const [visible, setVisible] = useState(false);
 
   // if (!props.visible) {
@@ -25,37 +25,37 @@ function Modal(props: IModalProps) {
 
   return (
     <div className="robin-modal">
-      {props.visible ?<div
+      {props.visible ? <div
         onClick={(e) => {
           // e.stopPropagation();
           props.onClose();
         }}
         className="mask"
       >
-      </div>:''}
-      <CSSTransition
-        in={props.visible}
-        classNames="alert"
-        timeout={300}
-        unmountOnExit
-        onEnter={() => {
-          console.log("onEnter")
-          // props.onClose()
+      </div> : ''}
+      <div
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            e.stopPropagation();
+            props.onClose();
+          }
         }}
-        onExit={() => {
-          console.log("onExit");
-          props.onClose();
-        }}
+        role="document" className="content-wrapper"
       >
-
-        <div
-          onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              e.stopPropagation();
-              props.onClose();
-            }
+        <CSSTransition
+          in={props.visible}
+          classNames="alert"
+          timeout={300}
+          unmountOnExit
+          onEnter={() => {
+            console.log("onEnter")
+            // props.onClose()
           }}
-          role="document" className="content-wrapper">
+          onExit={() => {
+            console.log("onExit");
+            props.onClose();
+          }}
+        >
           <div className="content"
             style={{
               width: props.width || "400px",
@@ -73,8 +73,8 @@ function Modal(props: IModalProps) {
               props.children
             }
           </div>
-        </div>
-      </CSSTransition>
+        </CSSTransition>
+      </div>
     </div>
   )
 }

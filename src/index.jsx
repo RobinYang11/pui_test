@@ -38,6 +38,11 @@ class App extends React.Component {
     return (
       <div>
         <button onClick={this.toggle}>tg</button>
+        {
+          [1,3,3,3,34,3,3,43,34,34,34,34,34,34,43,343,3,3,3,324,52,254,3,4,3].map(i=>{
+          return <li>{i}</li>
+          })
+        }
         <Modal
           onClose={() => { this.setState({ visible: false }) }}
           visible={this.state.visible}>
