@@ -33,29 +33,29 @@ function Modal(props: IModalProps) {
         className="mask"
       >
       </div> : ''}
-      <div
-        onClick={(e) => {
-          if (e.target === e.currentTarget) {
-            e.stopPropagation();
-            props.onClose();
-          }
+      <CSSTransition
+        in={props.visible}
+        classNames="alert"
+        timeout={300}
+        unmountOnExit
+        onEnter={() => {
+          console.log("onEnter")
+          // props.onClose()
         }}
-        role="document" className="content-wrapper"
+        onExit={() => {
+          console.log("onExit");
+          props.onClose();
+        }}
       >
-        <CSSTransition
-          in={props.visible}
-          classNames="alert"
-          timeout={300}
-          unmountOnExit
-          onEnter={() => {
-            console.log("onEnter")
-            // props.onClose()
+        <div
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              e.stopPropagation();
+              console.log("wrapper click!")
+              props.onClose();
+            }
           }}
-          onExit={() => {
-            console.log("onExit");
-            props.onClose();
-          }}
-        >
+          role="document" className="content-wrapper">
           <div className="content"
             style={{
               width: props.width || "400px",
@@ -73,8 +73,8 @@ function Modal(props: IModalProps) {
               props.children
             }
           </div>
-        </CSSTransition>
-      </div>
+        </div>
+      </CSSTransition>
     </div>
   )
 }
