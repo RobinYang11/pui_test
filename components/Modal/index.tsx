@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './style.less';
+import Icon from '../Icon/index';
 import { CSSTransition } from 'react-transition-group'
 
 interface IModalProps {
@@ -51,7 +52,7 @@ function Modal(props: IModalProps) {
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               e.stopPropagation();
-              console.log("wrapper click!")
+              console.log("wrapper cli")
               props.onClose();
             }
           }}
@@ -62,16 +63,29 @@ function Modal(props: IModalProps) {
               ...props.style,
             }}
           >
-            <span
+            {/* <span
               onClick={(e) => {
                 props.onClose();
               }}
               className="close-btn">
               X
-            </span>
-            {
-              props.children
-            }
+            </span> */}
+            <div style={{ height: '200px', background: "white", padding: "10px", position: "relative" }}>
+              <Icon
+                style={{ position: 'absolute', right: '10px', fontSize: '1.5em'}}
+                type="tishi"
+                onClick={()=>{props.onClose(e)}}
+              />
+              <h4>{props.title}</h4>
+              {
+                props.children
+              }
+              <div style={{ position: 'absolute', bottom: "10px", right: "10px" }}>
+                <button onClick={() => { props.onClose(); }} style={{ marginRight: "10px" }}>取消</button>
+                <button>确定</button>
+              </div>
+            </div>
+
           </div>
         </div>
       </CSSTransition>
