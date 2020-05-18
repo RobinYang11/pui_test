@@ -3,9 +3,7 @@ import ReactDom from 'react-dom';
 import '../static/iconfont';
 import './index.less';
 import { Modal } from '../components/index';
-
 const { Provider, Consumer } = React.createContext({});
-
 class App extends React.Component {
 
   state = {

@@ -3,8 +3,7 @@ import './style.less';
 
 interface IconProps {
   type: string;
-  style: object;
-
+  style?: object;
 }
 
 function Icon(props: IconProps) {
@@ -12,7 +11,6 @@ function Icon(props: IconProps) {
     <svg
       className="icon"
       aria-hidden="true"
-      // onClick={()=>{props.onClick();}}
       {...props} 
     >
       <use xlinkHref={`#icon-${props.type}`}></use>
