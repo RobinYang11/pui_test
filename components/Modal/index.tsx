@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import './style.less';
 import Icon from '../Icon/index';
 import { CSSTransition } from 'react-transition-group'
+import Button from '../Button/index';
 
 interface IModalProps {
   visible: boolean;
   title?: string;
   children: React.ReactChild | React.ReactChildren | React.ReactElement;
+  footer?: React.ReactChild | React.ReactChildren | React.ReactElement;
   onClose?: () => void;
   onSure?: () => void;
   width?: string;
@@ -21,7 +23,7 @@ function Modal(props: IModalProps) {
   document.body.style.overflow = props.visible ? 'hidden' : 'auto';
 
   return (
-    <div className="robin-modal">
+    <div className="modal">
       {props.visible ? <div
         onClick={(e) => {
           props.onClose();
@@ -52,30 +54,36 @@ function Modal(props: IModalProps) {
           <div className="content"
             style={{
               width: props.width || "400px",
+              padding: "10px 10px 40px",
               ...props.style,
             }}
           >
-            <div style={{ height: '200px', background: "white", padding: "10px", position: "relative" }}>
+            <div className="modal-header">
+              <h4>{props.title}</h4>
               <span
                 onClick={() => {
                   props.onClose();
                 }}
-                style={{ position: 'absolute', right: '10px', fontSize: '1.5em' }}
+                className="close-btn"
               >
                 <Icon
                   type="tishi"
                 />
               </span>
-              <h4>{props.title}</h4>
-              {
-                props.children
-              }
-              <div style={{ position: 'absolute', bottom: "10px", right: "10px" }}>
-                <button onClick={() => { props.onClose(); }} style={{ marginRight: "10px" }}>取消</button>
-                <button>确定</button>
-              </div>
             </div>
-
+            {
+              props.children
+            }
+            <div className="modal-footer">
+              {
+                props.footer ? props.footer : (
+                  <React.Fragment>
+                    <button onClick={() => { props.onClose(); }} style={{ marginRight: "10px" }}>取消</button>
+                    <Button>确定</Button>
+                  </React.Fragment>
+                )
+              }
+            </div>
           </div>
         </div>
       </CSSTransition>

@@ -1,54 +1,66 @@
-
-.robin-modal{
+.modal {
   display: block;
-  .mask{
-    position: fixed;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    background-color: grey;
-    opacity: .4;
-    z-index: 1001;
+
+  .mask {
+    position        : fixed;
+    top             : 0;
+    bottom          : 0;
+    left            : 0;
+    right           : 0;
+    background-color: rgb(177, 177, 177);
+    opacity         : .4;
+    z-index         : 1001;
   }
-  .content-wrapper{
+
+  .content-wrapper {
     position: absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    .content{
-      top: 50px;
+    top     : 0;
+    bottom  : 0;
+    left    : 0;
+    right   : 0;
+
+    .content {
+      top     : 50px;
       position: relative;
-      margin: 0 auto;
-      z-index: 10001;
-      .close-btn{
+      margin  : 0 auto;
+      z-index : 10001;
+
+      .modal-header {
+        .close-btn {
+          position : absolute;
+          right    : 10px;
+          top      : 0;
+          font-size: 1.5em;
+          cursor   : pointer;
+        }
+      }
+      .modal-footer {
         position: absolute;
-        right: 0;
-        top:0;
-        cursor: pointer;
+        bottom  : 10px;
+        right   : 10px;
       }
     }
   }
 }
 
 .alert-enter {
-  opacity: 0;
+  opacity  : 0;
   transform: scale(0.5) rotate(45deg);
 }
 
 .alert-enter-active {
-  opacity: 1;
-  transform: translateX(0) ;
+  opacity   : 1;
+  transform : translateX(0);
   transition: opacity 300ms, transform 300ms;
 }
 
 .alert-exit {
-  opacity: 1;
-  transform: translateX(0)  rotate(45deg) ;
+  opacity  : 1;
+  transform: translateX(0) rotate(45deg);
 }
+
 .alert-exit-active {
-  opacity: 0;
-  transform: scale(0.9);
+  opacity   : 0;
+  transform : scale(0.9);
   transition: opacity 300ms, transform 300ms;
 }

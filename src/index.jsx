@@ -30,8 +30,29 @@ class App extends React.Component {
           title="这是标题"
           onClose={() => { this.setState({ visible: false }) }}
           visible={this.state.visible}
+          style={{
+            minHeight: "200px",
+            background: "white",
+          }}
         >
-         <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
+          <h5>这是内容</h5>
         </Modal>
       </div>
     )
