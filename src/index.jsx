@@ -3,7 +3,9 @@ import ReactDom from 'react-dom';
 import '../static/iconfont';
 import './index.less';
 import { Modal, Button } from '../components/index';
+
 const { Provider, Consumer } = React.createContext({});
+
 class App extends React.Component {
 
   state = {
@@ -30,7 +32,6 @@ class App extends React.Component {
           onClick={this.toggle}>
           open modal
         </Button>
-
         <Modal
           title="这是标题"
           onClose={() => { this.setState({ visible: false }) }}

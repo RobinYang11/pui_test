@@ -54,7 +54,7 @@ function Modal(props: IModalProps) {
           <div className="content"
             style={{
               width: props.width || "400px",
-              padding: "10px 10px 40px",
+              padding: "10px 10px 10px 10px",
               ...props.style,
             }}
           >
@@ -78,8 +78,14 @@ function Modal(props: IModalProps) {
               {
                 props.footer ? props.footer : (
                   <React.Fragment>
-                    <button onClick={() => { props.onClose(); }} style={{ marginRight: "10px" }}>取消</button>
-                    <Button>确定</Button>
+                    <Button
+                      type="default"
+                      onClick={() => { props.onClose(); }}
+                      style={{ marginRight: "10px" }}
+                    >
+                      取消
+                      </Button>
+                    <Button type="default">确定</Button>
                   </React.Fragment>
                 )
               }
