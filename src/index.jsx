@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import '../static/iconfont';
 import './index.less';
-import { Modal } from '../components/index';
+import { Modal, Button } from '../components/index';
 const { Provider, Consumer } = React.createContext({});
 class App extends React.Component {
 
@@ -24,8 +24,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <button onClick={this.toggle}>tg</button>
+      <div style={{ padding: "20px" }}>
+        <Button
+          type="default"
+          onClick={this.toggle}>
+          open modal
+        </Button>
+
         <Modal
           title="这是标题"
           onClose={() => { this.setState({ visible: false }) }}
