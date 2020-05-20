@@ -1,15 +1,37 @@
 
 
+export { default as Table } from './Table/Table';
 
+export { default as ImageViewer } from './ImageViewer/index';
 
-export {default as Table} from './Table/Table';
+import Modal from './Modal/index';
+import Button from './Button/index';
+import Icon from './Icon/index';
 
-export {default as ImageViewer} from './ImageViewer/index';
+const components = {
+  Icon,
+  Button,
+  Modal
+}
 
-export {default as Modal} from './Modal/index';
+class Robin {
 
-export {default as Icon} from './Icon/index';
+  static instance: Robin;
 
-export {default as Button} from './Button/index';
+  components:Object;
 
-export {default as AnimationDemo } from './AnimationDemo/index'
+  constructor(){
+    this.components= components;
+  }
+
+  static getInstance() {
+    if (!this.instance) {
+      return new Robin();
+    } else {
+      this.instance;
+    }
+  }
+
+}
+
+export default Robin.getInstance();

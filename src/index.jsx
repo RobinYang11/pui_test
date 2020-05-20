@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import '../static/iconfont';
 import './index.less';
-import { Modal, Button } from '../components/index';
+import Robin from '../components/index';
+
+const { Modal, Button } = Robin.components;
 
 const { Provider, Consumer } = React.createContext({});
 
@@ -25,7 +27,7 @@ class App extends React.Component {
   }
 
   onConfirm = () => {
-    Modal.confirm(); 
+    Modal.confirm();
   }
 
   render() {

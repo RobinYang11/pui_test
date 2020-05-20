@@ -110,14 +110,16 @@ interface IConfirmProps {
 }
 
 Modal.confirm = function () {
-  console.log("robin")
   const tempDiv = document.createElement('div')
   document.body.appendChild(tempDiv);
-  ReactDOM.render(<Modal visible={true}
-    style={{
-      minHeight: "200px",
-      background: "white",
-    }} >hello</Modal>, tempDiv);
+  ReactDOM.render(
+    <Modal visible={true}
+      style={{
+        minHeight: "200px",
+        background: "white",
+      }} >
+      hello
+    </Modal>, tempDiv);
 }
 
 
