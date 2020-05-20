@@ -10,7 +10,7 @@ const components = {
 }
 
 class Robin {
-
+  
   static instance: Robin;
   components: Object;
   

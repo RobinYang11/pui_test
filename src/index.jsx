@@ -5,7 +5,6 @@ import './index.less';
 import Robin from '../components/index';
 
 import aa from '../components/index';
-debugger;
 
 const { Modal, Button } = Robin.components;
 
@@ -46,6 +45,7 @@ class App extends React.Component {
         </Button>
         <Modal
           title="这是标题"
+          locale="zh"
           // onClose={() => { this.setState({ visible: false }) }}
           visible={this.state.visible}
           style={{

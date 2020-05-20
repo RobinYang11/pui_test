@@ -14,11 +14,14 @@ interface IModalProps {
   onSure?: () => void;
   width?: string;
   style?: object;
-  lacale?:string;
+  locale?:string;
 }
 
 function Modal(props: IModalProps) {
-  
+  console.log("###"+this)
+  var lan= require(`../locale/${props.locale}.json`);
+
+  console.log(lan)
   const [visible, setVisible] = useState(props.visible);
   useEffect(() => {
     setVisible(props.visible)
