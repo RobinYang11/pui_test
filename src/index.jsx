@@ -24,6 +24,10 @@ class App extends React.Component {
     })
   }
 
+  onConfirm = () => {
+    Modal.confirm(); 
+  }
+
   render() {
     return (
       <div style={{ padding: "20px" }}>
@@ -32,24 +36,18 @@ class App extends React.Component {
           onClick={this.toggle}>
           open modal
         </Button>
+        <Button onClick={() => { this.onConfirm(); }} type="primary" >
+          confirm
+        </Button>
         <Modal
           title="这是标题"
-          onClose={() => { this.setState({ visible: false }) }}
+          // onClose={() => { this.setState({ visible: false }) }}
           visible={this.state.visible}
           style={{
             minHeight: "200px",
             background: "white",
           }}
         >
-          <h5>这是内容</h5>
-          <h5>这是内容</h5>
-          <h5>这是内容</h5>
-          <h5>这是内容</h5>
-          <h5>这是内容</h5>
-          <h5>这是内容</h5>
-          <h5>这是内容</h5>
-          <h5>这是内容</h5>
-          <h5>这是内容</h5>
           <h5>这是内容</h5>
           <h5>这是内容</h5>
           <h5>这是内容</h5>

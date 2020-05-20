@@ -7,7 +7,7 @@
     bottom          : 0;
     left            : 0;
     right           : 0;
-    background-color: rgb(177, 177, 177);
+    background-color: #000000d6;
     opacity         : .4;
     z-index         : 1001;
   }
@@ -26,6 +26,8 @@
       z-index : 10001;
 
       .modal-header {
+        padding: 5px 10px;
+
         .close-btn {
           position : absolute;
           right    : 10px;
@@ -34,10 +36,14 @@
           cursor   : pointer;
         }
       }
+
+      .modal-body {
+        padding: 10px;
+      }
+
       .modal-footer {
-        position: absolute;
-        bottom  : 10px;
-        right   : 10px;
+        text-align: right;
+        padding   : 5px 10px;
       }
     }
   }

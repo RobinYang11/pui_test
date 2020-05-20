@@ -5,7 +5,7 @@ interface IButtonProps {
   /**
    * type  button style type 
    */
-  type?: String,
+  type?: 'primary' | 'default' | 'danger',
   /**
    * custom style
    */
@@ -22,8 +22,8 @@ function Button(props: IButtonProps) {
   return (
     <button
       className={`btn btn-${props.type}`}
-      style={props.style}
-      onClick={() => { props.onClick() }}
+      {...props}
+      type="button"
     >
       {props.children}
     </button>
