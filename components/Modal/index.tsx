@@ -14,10 +14,11 @@ interface IModalProps {
   onSure?: () => void;
   width?: string;
   style?: object;
+  lacale?:string;
 }
 
 function Modal(props: IModalProps) {
-
+  
   const [visible, setVisible] = useState(props.visible);
   useEffect(() => {
     setVisible(props.visible)

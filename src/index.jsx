@@ -4,6 +4,9 @@ import '../static/iconfont';
 import './index.less';
 import Robin from '../components/index';
 
+import aa from '../components/index';
+debugger;
+
 const { Modal, Button } = Robin.components;
 
 const { Provider, Consumer } = React.createContext({});
