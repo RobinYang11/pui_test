@@ -15,21 +15,29 @@ interface IModalProps {
   width?: string;
   style?: object;
   isCloseButtonVisible?: boolean;
+  sureText?: string;
+  closeText?: string;
+  rootDom?: HTMLDivElement
 }
 
 function Modal(props: IModalProps) {
 
   const [visible, setVisible] = useState(props.visible);
   useEffect(() => {
-    setVisible(props.visible)
+    setVisible(props.visible);
   }, [props.visible]);
 
   function closeModal() {
+
     if (props.onClose) {
       props.onClose();
-      return;
+    } else {
+      setVisible(false);
     }
-    setVisible(false);
+
+    if (!!props.rootDom) {
+      removeDynamicNode(props.rootDom);
+    }
   }
 
   function renderCloseButton() {
@@ -47,6 +55,10 @@ function Modal(props: IModalProps) {
       </span>);
     }
     return null;
+  }
+
+  function removeDynamicNode(dom: HTMLDivElement) {
+    document.body.removeChild(dom);
   }
 
   /**
@@ -102,7 +114,7 @@ function Modal(props: IModalProps) {
             </div>
             <div className="modal-footer">
               {
-                props.footer ? props.footer : (
+                props.footer !== undefined ? props.footer : (
                   <React.Fragment>
                     <Button
                       type="default"
@@ -111,9 +123,9 @@ function Modal(props: IModalProps) {
                       }}
                       style={{ marginRight: "10px" }}
                     >
-                      取消
-                      </Button>
-                    <Button type="primary">确定</Button>
+                      {props.closeText || "cancel"}
+                    </Button>
+                    <Button type="primary">{props.sureText || "ok"}</Button>
                   </React.Fragment>
                 )
               }
@@ -125,15 +137,24 @@ function Modal(props: IModalProps) {
   )
 }
 
+/**
+ * confirm render a Modal on dynamic dom node.
+ * when confirm closed,the node will be removed automatically.
+ */
+interface IconfirmProps extends IModalProps {
+  content?: React.ReactChild | React.ReactChildren | React.ReactElement | string;
+}
 
-Modal.confirm = function () {
+Modal.confirm = function (params: IconfirmProps) {
   const tempDiv = document.createElement('div')
   document.body.appendChild(tempDiv);
   ReactDOM.render(
     <Modal
-      isCloseButtonVisible={false}
-      visible={true}>
-      hello
+      {...params}
+      rootDom={tempDiv}
+      visible={params.visible === undefined ? true : params.visible}
+    >
+      {params.content}
     </Modal>, tempDiv);
 }
 
