@@ -5,15 +5,14 @@ import Icon from './Icon/index';
 const components = {
   Modal,
   Icon,
-  Button,
-
+  Button
 }
 
 class Robin {
-  
   static instance: Robin;
+
   components: Object;
-  
+
   constructor() {
     this.components = components;
   }

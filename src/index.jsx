@@ -4,10 +4,7 @@ import '../static/iconfont';
 import './index.less';
 import Robin from '../components/index';
 
-import aa from '../components/index';
-
 const { Modal, Button } = Robin.components;
-
 const { Provider, Consumer } = React.createContext({});
 
 class App extends React.Component {
@@ -46,7 +43,7 @@ class App extends React.Component {
         <Modal
           title="这是标题"
           locale="zh"
-          // onClose={() => { this.setState({ visible: false }) }}
+          onClose={() => { this.setState({ visible: false }) }}
           visible={this.state.visible}
           style={{
             minHeight: "200px",

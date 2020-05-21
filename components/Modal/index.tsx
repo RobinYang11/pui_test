@@ -14,18 +14,23 @@ interface IModalProps {
   onSure?: () => void;
   width?: string;
   style?: object;
-  locale?:string;
 }
 
 function Modal(props: IModalProps) {
-  console.log("###"+this)
-  var lan= require(`../locale/${props.locale}.json`);
 
-  console.log(lan)
   const [visible, setVisible] = useState(props.visible);
   useEffect(() => {
     setVisible(props.visible)
   }, [props.visible]);
+
+  function closeModal() {
+    if (props.onClose) {
+      props.onClose();
+      return;
+    }
+    setVisible(false);
+  }
+
   /**
    * when modal show ,set body unscrollable!
    */
@@ -34,8 +39,7 @@ function Modal(props: IModalProps) {
     <div className="modal">
       {visible ? <div
         onClick={(e) => {
-          // props.onClose();
-          setVisible(false)
+          closeModal();
         }}
         className="mask"
       >
@@ -49,15 +53,14 @@ function Modal(props: IModalProps) {
           console.log("onEnter")
         }}
         onExit={() => {
-          // props.onClose();
-          setVisible(false)
+          closeModal();
         }}
       >
         <div
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               e.stopPropagation();
-              setVisible(false)
+              closeModal();
             }
           }}
           role="document" className="content-wrapper">
@@ -72,7 +75,7 @@ function Modal(props: IModalProps) {
               <h4>{props.title}</h4>
               <span
                 onClick={() => {
-                  setVisible(false);
+                  closeModal();
                 }}
                 className="close-btn"
               >
@@ -92,7 +95,9 @@ function Modal(props: IModalProps) {
                   <React.Fragment>
                     <Button
                       type="default"
-                      onClick={() => { setVisible(false) }}
+                      onClick={() => { 
+                        closeModal();
+                      }}
                       style={{ marginRight: "10px" }}
                     >
                       取消
@@ -109,9 +114,6 @@ function Modal(props: IModalProps) {
   )
 }
 
-interface IConfirmProps {
-
-}
 
 Modal.confirm = function () {
   const tempDiv = document.createElement('div')
