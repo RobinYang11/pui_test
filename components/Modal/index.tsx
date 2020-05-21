@@ -14,6 +14,7 @@ interface IModalProps {
   onSure?: () => void;
   width?: string;
   style?: object;
+  isCloseButtonVisible?: boolean;
 }
 
 function Modal(props: IModalProps) {
@@ -29,6 +30,23 @@ function Modal(props: IModalProps) {
       return;
     }
     setVisible(false);
+  }
+
+  function renderCloseButton() {
+    if (props.isCloseButtonVisible === undefined ||
+      props.isCloseButtonVisible === true) {
+      return (<span
+        onClick={() => {
+          closeModal();
+        }}
+        className="close-btn"
+      >
+        <Icon
+          type="tishi"
+        />
+      </span>);
+    }
+    return null;
   }
 
   /**
@@ -73,16 +91,9 @@ function Modal(props: IModalProps) {
           >
             <div className="modal-header">
               <h4>{props.title}</h4>
-              <span
-                onClick={() => {
-                  closeModal();
-                }}
-                className="close-btn"
-              >
-                <Icon
-                  type="tishi"
-                />
-              </span>
+              {
+                renderCloseButton()
+              }
             </div>
             <div className="modal-body">
               {
@@ -95,7 +106,7 @@ function Modal(props: IModalProps) {
                   <React.Fragment>
                     <Button
                       type="default"
-                      onClick={() => { 
+                      onClick={() => {
                         closeModal();
                       }}
                       style={{ marginRight: "10px" }}
@@ -119,16 +130,11 @@ Modal.confirm = function () {
   const tempDiv = document.createElement('div')
   document.body.appendChild(tempDiv);
   ReactDOM.render(
-    <Modal visible={true}
-      style={{
-        minHeight: "200px",
-        background: "white",
-      }} >
+    <Modal
+      isCloseButtonVisible={false}
+      visible={true}>
       hello
     </Modal>, tempDiv);
 }
-
-
-
 
 export default Modal;

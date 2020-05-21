@@ -24,6 +24,8 @@
       position: relative;
       margin  : 0 auto;
       z-index : 10001;
+      min-height: 100px;
+      background-color: white;
 
       .modal-header {
         padding: 5px 10px;
@@ -42,8 +44,10 @@
       }
 
       .modal-footer {
-        text-align: right;
-        padding   : 5px 10px;
+        position: absolute;
+        right   : 0;
+        bottom  : 0;
+        padding : 5px 10px;
       }
     }
   }
