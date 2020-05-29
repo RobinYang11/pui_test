@@ -33,13 +33,6 @@ class App extends React.Component {
           onClick={this.toggle}>
           open modal
         </Button>
-        <Button onClick={() => {
-          Modal.confirm({
-            content: "are you sure?",
-          });
-        }} type="primary" >
-          confirm
-        </Button>
         <Modal
           title="这是标题"
           locale="zh"

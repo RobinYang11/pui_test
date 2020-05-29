@@ -3,7 +3,6 @@ import './style.less';
 import Icon from '../Icon/index';
 import { CSSTransition } from 'react-transition-group'
 import Button from '../Button/index';
-import * as ReactDOM from 'react-dom';
 
 interface IModalProps {
   visible?: boolean;
@@ -17,7 +16,6 @@ interface IModalProps {
   isCloseButtonVisible?: boolean;
   sureText?: string;
   closeText?: string;
-  rootDom?: HTMLDivElement
 }
 
 function Modal(props: IModalProps) {
@@ -35,9 +33,6 @@ function Modal(props: IModalProps) {
       setVisible(false);
     }
 
-    if (!!props.rootDom) {
-      removeDynamicNode(props.rootDom);
-    }
   }
 
   function renderCloseButton() {
@@ -57,14 +52,11 @@ function Modal(props: IModalProps) {
     return null;
   }
 
-  function removeDynamicNode(dom: HTMLDivElement) {
-    document.body.removeChild(dom);
-  }
-
   /**
    * when modal show ,set body unscrollable!
    */
   document.body.style.overflow = props.visible ? 'hidden' : 'auto';
+
   return (
     <div className="modal">
       {visible ? <div
@@ -145,17 +137,17 @@ interface IconfirmProps extends IModalProps {
   content?: React.ReactChild | React.ReactChildren | React.ReactElement | string;
 }
 
-Modal.confirm = function (params: IconfirmProps) {
-  const tempDiv = document.createElement('div')
-  document.body.appendChild(tempDiv);
-  ReactDOM.render(
-    <Modal
-      {...params}
-      rootDom={tempDiv}
-      visible={params.visible === undefined ? true : params.visible}
-    >
-      {params.content}
-    </Modal>, tempDiv);
-}
+// Modal.confirm = function (params: IconfirmProps) {
+//   const tempDiv = document.createElement('div')
+//   document.body.appendChild(tempDiv);
+//   ReactDOM.render(
+//     <Modal
+//       {...params}
+//       rootDom={tempDiv}
+//       visible={params.visible === undefined ? true : params.visible}
+//     >
+//       {params.content}
+//     </Modal>, tempDiv);
+// }
 
 export default Modal;
