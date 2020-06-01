@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './style.less';
 import Icon from '../Icon/index';
 import { CSSTransition } from 'react-transition-group'
@@ -152,19 +152,18 @@ function Modal(props: IModalProps) {
   const minWidth = '500px';
   const [visible, setVisible] = useState(props.visible);
   const [style, setStyle] = useState({});
-  const [maximized,setMaximized] = useState(false);
+  const [maximized, setMaximized] = useState(false);
+
   useEffect(() => {
     setVisible(props.visible);
   }, [props.visible]);
 
   function closeModal() {
-
     if (props.onClose) {
       props.onClose();
     } else {
       setVisible(false);
     }
-
   }
 
   function renderCloseButton() {
