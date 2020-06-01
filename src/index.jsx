@@ -4,7 +4,7 @@ import '../static/iconfont';
 import './index.less';
 import Robin from '../components/index';
 
-const { Modal, Button } = Robin.components;
+const { Modal, Button,Window } = Robin.components;
 const { Provider, Consumer } = React.createContext({});
 
 class App extends React.Component {
@@ -40,6 +40,7 @@ class App extends React.Component {
         }} type="primary" >
           confirm
         </Button>
+        <Window></Window>
         <Modal
           title="这是标题"
           locale="zh"

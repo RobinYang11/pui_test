@@ -1,11 +1,13 @@
 import Modal from './Modal/index';
 import Button from './Button/index';
 import Icon from './Icon/index';
+import Window from './Window/index';
 
 const components = {
   Modal,
   Icon,
-  Button
+  Button,
+  Window
 }
 
 class Robin {

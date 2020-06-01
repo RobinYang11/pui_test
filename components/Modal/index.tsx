@@ -152,10 +152,10 @@ Modal.confirm = function (params: IconfirmProps) {
     <Modal
       {...params}
       rootDom={tempDiv}
+      isCloseButtonVisible={false}
       visible={params.visible === undefined ? true : params.visible}
     >
       {params.content}
     </Modal>, tempDiv);
 }
-
 export default Modal;
