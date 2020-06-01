@@ -40,6 +40,7 @@ function BaseModal(props: IModalProps) {
     } else {
       setVisible(false);
     }
+    
 
   }
 
@@ -164,6 +165,10 @@ function Modal(props: IModalProps) {
     } else {
       setVisible(false);
     }
+    setStyle({
+      width:minWidth,
+    })
+    setMaximized(false)
   }
 
   function renderCloseButton() {
