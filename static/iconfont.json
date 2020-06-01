@@ -18,6 +18,13 @@
       "font_class": "jianhao",
       "unicode": "e61d",
       "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "11641878",
+      "name": "加号",
+      "font_class": "jiahao",
+      "unicode": "e620",
+      "unicode_decimal": 58912
     }
   ]
 }

@@ -16,6 +16,14 @@ interface IModalProps {
   isCloseButtonVisible?: boolean;
   sureText?: string;
   closeText?: string;
+  /**
+   * max width of modal
+   */
+  maxWidth?: string;
+  /**
+   * min width of modal
+   */
+  minWidth?: string;
 }
 
 function BaseModal(props: IModalProps) {
@@ -88,7 +96,7 @@ function BaseModal(props: IModalProps) {
           role="document" className="content-wrapper">
           <div className="content"
             style={{
-              width: props.width || "500px",
+              width: props.minWidth,
               padding: "10px 0",
               ...props.style,
             }}
@@ -105,7 +113,7 @@ function BaseModal(props: IModalProps) {
 
 const modalDom = props => (
   <div>
-    <div className="modal-header"> 
+    <div className="modal-header">
       <h4>{props.title}</h4>
       {
         props.renderCloseButton()
@@ -140,7 +148,12 @@ const modalDom = props => (
 
 function Modal(props: IModalProps) {
 
+  const maxWidth = '1200px';
+  const minWidth = '500px';
   const [visible, setVisible] = useState(props.visible);
+  const [style, setStyle] = useState({
+
+  });
   useEffect(() => {
     setVisible(props.visible);
   }, [props.visible]);
@@ -158,19 +171,50 @@ function Modal(props: IModalProps) {
   function renderCloseButton() {
     if (props.isCloseButtonVisible === undefined ||
       props.isCloseButtonVisible === true) {
-      return (<span
-        onClick={() => {
-          closeModal();
-        }}
-        className="close-btn"
-      >
-        <Icon
-          style={{
-            color:'#ff5959'
-          }}
-          type="close"
-        />
-      </span>);
+      return (<React.Fragment>
+        <span className="close-btn">
+          {
+            true ? <span onClick={() => {
+              setStyle({
+                width: minWidth
+              })
+            }}>
+              <Icon
+                style={{
+                  color: '#BFBFBF'
+                }}
+                type="jianhao"
+              />
+            </span> :
+              <span onClick={() => {
+                setStyle({
+                  width: maxWidth
+                })
+              }}>
+                <Icon
+                  style={{
+                    color: '#BFBFBF'
+                  }}
+                  type="jiahao"
+                />
+              </span>
+          }
+          <span
+            onClick={() => {
+              closeModal();
+            }}
+          >
+            <Icon
+              style={{
+                color: '#ff5959'
+              }}
+              type="close"
+            />
+          </span>
+
+
+        </span>
+      </React.Fragment>);
     }
     return null;
   }
@@ -211,9 +255,10 @@ function Modal(props: IModalProps) {
           role="document" className="content-wrapper">
           <div className="content"
             style={{
-              width: props.width || "500px",
+              width: props.width || minWidth,
               padding: "10px 0",
               ...props.style,
+              ...style
             }}
           >
             <div className="modal-header">
