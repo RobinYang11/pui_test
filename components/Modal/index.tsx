@@ -151,9 +151,8 @@ function Modal(props: IModalProps) {
   const maxWidth = '1200px';
   const minWidth = '500px';
   const [visible, setVisible] = useState(props.visible);
-  const [style, setStyle] = useState({
-
-  });
+  const [style, setStyle] = useState({});
+  const [maximized,setMaximized] = useState(false);
   useEffect(() => {
     setVisible(props.visible);
   }, [props.visible]);
@@ -174,10 +173,11 @@ function Modal(props: IModalProps) {
       return (<React.Fragment>
         <span className="close-btn">
           {
-            true ? <span onClick={() => {
+            maximized ? <span onClick={() => {
               setStyle({
                 width: minWidth
-              })
+              });
+              setMaximized(false);
             }}>
               <Icon
                 style={{
@@ -189,7 +189,8 @@ function Modal(props: IModalProps) {
               <span onClick={() => {
                 setStyle({
                   width: maxWidth
-                })
+                });
+                setMaximized(true);
               }}>
                 <Icon
                   style={{
@@ -211,7 +212,6 @@ function Modal(props: IModalProps) {
               type="close"
             />
           </span>
-
 
         </span>
       </React.Fragment>);
