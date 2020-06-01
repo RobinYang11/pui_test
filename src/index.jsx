@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import '../static/iconfont';
 import './index.less';
+import '../static/iconfont.css'
 import Robin from '../components/index';
 
 const { Modal, Button,Window } = Robin.components;
@@ -28,6 +29,7 @@ class App extends React.Component {
   render() {
     return (
       <div style={{ padding: "20px" }}>
+        <span className="icon-close"></span>
         <Button
           type="default"
           onClick={this.toggle}>

@@ -105,7 +105,7 @@ function BaseModal(props: IModalProps) {
 
 const modalDom = props => (
   <div>
-    <div className="modal-header">
+    <div className="modal-header"> 
       <h4>{props.title}</h4>
       {
         props.renderCloseButton()
@@ -165,7 +165,10 @@ function Modal(props: IModalProps) {
         className="close-btn"
       >
         <Icon
-          type="tishi"
+          style={{
+            color:'#ff5959'
+          }}
+          type="close"
         />
       </span>);
     }
