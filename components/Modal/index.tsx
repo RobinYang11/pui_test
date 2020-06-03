@@ -41,8 +41,9 @@ function Modal(props: IModalProps) {
 
   useEffect(() => {
     setState({
-      visible: props.visible,
       ...state,
+      visible: props.visible,
+    
     });
   }, [props.visible]);
 
@@ -51,8 +52,8 @@ function Modal(props: IModalProps) {
       props.onClose();
     } else {
       setState({
-        visible: props.visible,
         ...state,
+        visible: props.visible,
       });
     }
     setStyle({
