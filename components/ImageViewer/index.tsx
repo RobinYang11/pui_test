@@ -45,20 +45,21 @@ function ImageViewer(props: ImageViewerProps) {
     })
   }
 
-  return (<div className="image-viewer" style={{ width: '300px', ...props.style }}>
-    <button className="btn-left" >left</button>
-    <ul style={{ overflow: 'hidden' }}>
-      {
-        renderImages(props.images)
-      }
-    </ul>
-    <button className="btn-right">right</button>
-    <Modal
-      visible={state.visible}
-      onClose={quitPreview}
-      title="test">
-      <div>弹框测试</div>
-    </Modal>
-  </div>)
+  return (
+    <div className="image-viewer" style={{ width: '300px', ...props.style }}>
+      <button className="btn-left" >left</button>
+      <ul style={{ overflow: 'hidden' }}>
+        {
+          renderImages(props.images)
+        }
+      </ul>
+      <button className="btn-right">right</button>
+      <Modal
+        visible={state.visible}
+        onClose={quitPreview}
+        title="test">
+        <div>弹框测试</div>
+      </Modal>
+    </div>)
 }
 export default ImageViewer;

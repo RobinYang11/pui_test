@@ -18,7 +18,6 @@ interface IButtonProps {
 
 
 function Button(props: IButtonProps) {
-
   return (
     <button
       className={`btn btn-${props.type}`}

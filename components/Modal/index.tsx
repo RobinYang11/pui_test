@@ -16,164 +16,55 @@ interface IModalProps {
   isCloseButtonVisible?: boolean;
   sureText?: string;
   closeText?: string;
-  /**
-   * max width of modal
-   */
+  // max width of modal
   maxWidth?: string;
-  /**
-   * min width of modal
-   */
+  // min width of modal
   minWidth?: string;
+  // there are two kinds of modal : 'default' and 'customized'
+  type?: 'default' | 'customized';
 }
-
-function BaseModal(props: IModalProps) {
-
-  const [visible, setVisible] = useState(props.visible);
-  useEffect(() => {
-    setVisible(props.visible);
-  }, [props.visible]);
-
-  function closeModal() {
-
-    if (props.onClose) {
-      props.onClose();
-    } else {
-      setVisible(false);
-    }
-    
-
-  }
-
-  function renderCloseButton() {
-    if (props.isCloseButtonVisible === undefined ||
-      props.isCloseButtonVisible === true) {
-      return (<span
-        onClick={() => {
-          closeModal();
-        }}
-        className="close-btn"
-      >
-        <Icon
-          type="tishi"
-        />
-      </span>);
-    }
-    return null;
-  }
-
-  /**
-   * when modal show ,set body unscrollable!
-   */
-  document.body.style.overflow = props.visible ? 'hidden' : 'auto';
-
-  return (
-    <div className="modal">
-      {visible ? <div
-        onClick={(e) => {
-          closeModal();
-        }}
-        className="mask"
-      >
-      </div> : ''}
-      <CSSTransition
-        in={visible}
-        classNames="alert"
-        timeout={300}
-        unmountOnExit
-        onEnter={() => {
-          console.log("onEnter")
-        }}
-        onExit={() => {
-          closeModal();
-        }}
-      >
-        <div
-          onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              e.stopPropagation();
-              closeModal();
-            }
-          }}
-          role="document" className="content-wrapper">
-          <div className="content"
-            style={{
-              width: props.minWidth,
-              padding: "10px 0",
-              ...props.style,
-            }}
-          >
-            {
-              props.children
-            }
-          </div>
-        </div>
-      </CSSTransition>
-    </div>
-  )
-}
-
-const modalDom = props => (
-  <div>
-    <div className="modal-header">
-      <h4>{props.title}</h4>
-      {
-        props.renderCloseButton()
-      }
-    </div>
-    <div className="modal-body">
-      {
-        props.children
-      }
-    </div>
-    <div className="modal-footer">
-      {
-        props.footer !== undefined ? props.footer : (
-          <React.Fragment>
-            <Button
-              type="default"
-              onClick={() => {
-                props.closeModal();
-              }}
-              style={{ marginRight: "10px" }}
-            >
-              {props.closeText || "cancel"}
-            </Button>
-            <Button type="primary">{props.sureText || "ok"}</Button>
-          </React.Fragment>
-        )
-      }
-    </div>
-  </div>
-)
-
 
 function Modal(props: IModalProps) {
 
   const maxWidth = '1200px';
   const minWidth = '500px';
+
+  const [state, setState] = useState({
+    visible: props.visible,
+    maximized: false,
+    style: {},
+  });
+
   const [visible, setVisible] = useState(props.visible);
   const [style, setStyle] = useState({});
   const [maximized, setMaximized] = useState(false);
 
   useEffect(() => {
-    setVisible(props.visible);
+    setState({
+      visible: props.visible,
+      ...state,
+    });
   }, [props.visible]);
 
   function closeModal() {
     if (props.onClose) {
       props.onClose();
     } else {
-      setVisible(false);
+      setState({
+        visible: props.visible,
+        ...state,
+      });
     }
     setStyle({
-      width:minWidth,
+      width: minWidth
     })
     setMaximized(false)
   }
 
-  function renderCloseButton() {
-    if (props.isCloseButtonVisible === undefined ||
-      props.isCloseButtonVisible === true) {
+  function renderOperateButton() {
+
+    if (props.isCloseButtonVisible === undefined
+      || props.isCloseButtonVisible === true) {
       return (<React.Fragment>
         <span className="close-btn">
           {
@@ -230,7 +121,7 @@ function Modal(props: IModalProps) {
 
   return (
     <div className="modal">
-      {visible ? <div
+      {state.visible ? <div
         onClick={(e) => {
           closeModal();
         }}
@@ -238,7 +129,7 @@ function Modal(props: IModalProps) {
       >
       </div> : ''}
       <CSSTransition
-        in={visible}
+        in={state.visible}
         classNames="alert"
         timeout={300}
         unmountOnExit
@@ -268,7 +159,7 @@ function Modal(props: IModalProps) {
             <div className="modal-header">
               <h4>{props.title}</h4>
               {
-                renderCloseButton()
+                renderOperateButton()
               }
             </div>
             <div className="modal-body">
@@ -300,26 +191,5 @@ function Modal(props: IModalProps) {
     </div>
   )
 }
-
-/**
- * confirm render a Modal on dynamic dom node.
- * when confirm closed,the node will be removed automatically.
- */
-interface IconfirmProps extends IModalProps {
-  content?: React.ReactChild | React.ReactChildren | React.ReactElement | string;
-}
-
-// Modal.confirm = function (params: IconfirmProps) {
-//   const tempDiv = document.createElement('div')
-//   document.body.appendChild(tempDiv);
-//   ReactDOM.render(
-//     <Modal
-//       {...params}
-//       rootDom={tempDiv}
-//       visible={params.visible === undefined ? true : params.visible}
-//     >
-//       {params.content}
-//     </Modal>, tempDiv);
-// }
 
 export default Modal;
