@@ -24,6 +24,9 @@ interface IModalProps {
   type?: 'default' | 'customized';
 }
 
+
+
+
 function Modal(props: IModalProps) {
 
   const maxWidth = '1200px';
@@ -35,15 +38,11 @@ function Modal(props: IModalProps) {
     style: {},
   });
 
-  const [visible, setVisible] = useState(props.visible);
-  const [style, setStyle] = useState({});
-  const [maximized, setMaximized] = useState(false);
 
   useEffect(() => {
     setState({
       ...state,
       visible: props.visible,
-    
     });
   }, [props.visible]);
 
@@ -53,13 +52,13 @@ function Modal(props: IModalProps) {
     } else {
       setState({
         ...state,
+        style:{
+          width:minWidth,
+        },
         visible: props.visible,
+        maximized:false,
       });
     }
-    setStyle({
-      width: minWidth
-    })
-    setMaximized(false)
   }
 
   function renderOperateButton() {
@@ -69,11 +68,15 @@ function Modal(props: IModalProps) {
       return (<React.Fragment>
         <span className="close-btn">
           {
-            maximized ? <span onClick={() => {
-              setStyle({
-                width: minWidth
+            state.maximized ? <span onClick={() => {
+              setState({
+                ...state,
+                visible: props.visible,
+                maximized:false,
+                style:{
+                  width:minWidth,
+                }
               });
-              setMaximized(false);
             }}>
               <Icon
                 style={{
@@ -83,10 +86,13 @@ function Modal(props: IModalProps) {
               />
             </span> :
               <span onClick={() => {
-                setStyle({
-                  width: maxWidth
+                setState({
+                  ...state,
+                  maximized:true,
+                  style:{
+                    width:maxWidth,
+                  }
                 });
-                setMaximized(true);
               }}>
                 <Icon
                   style={{
@@ -148,13 +154,14 @@ function Modal(props: IModalProps) {
               closeModal();
             }
           }}
-          role="document" className="content-wrapper">
+          role="document" className="content-wrapper"
+          >
           <div className="content"
             style={{
               width: props.width || minWidth,
               padding: "10px 0",
               ...props.style,
-              ...style
+              ...state.style
             }}
           >
             <div className="modal-header">
