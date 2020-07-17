@@ -1,62 +1,67 @@
 {
-  "name": "pui",
-  "version": "1.0.0",
-  "description": "a ui for preact",
-  "main": "index.js",
-  "scripts": {
-    "test": "test",
-    "build": "webpack --config webpack.config.js -name robin --enviroment production",
-    "dev": "webpack-dev-server --config webpack.config.js --enviroment development"
-  },
-  "keywords": [
-    "react",
-    "ui",
-    "typescript"
-  ],
-  "alias": {
-    "react": "preact/compat",
-    "react-dom/test-utils": "preact/test-utils",
-    "react-dom": "preact/compat"
-  },
-  "author": "robin",
-  "license": "ISC",
-  "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/polyfill": "^7.8.7",
-    "@babel/preset-env": "^7.9.5",
-    "@babel/preset-react": "^7.9.4",
-    "@types/react": "^16.9.34",
-    "@types/react-dom": "^16.9.6",
-    "@types/react-transition-group": "^4.2.4",
-    "babel-loader": "^8.1.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "clean-webpack-plugin": "^3.0.0",
-    "css-loader": "^3.5.2",
-    "file-loader": "^6.0.0",
-    "friendly-errors-webpack-plugin": "^1.7.0",
-    "html-webpack-plugin": "^4.2.0",
-    "jest": "^25.4.0",
-    "less": "^3.11.1",
-    "less-loader": "^5.0.0",
-    "mini-css-extract-plugin": "^0.9.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-router-dom": "^5.1.2",
-    "ts-loader": "^6.2.2",
-    "tslint": "^6.1.2",
-    "typescript": "^3.8.3",
-    "url-loader": "^4.1.0",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3",
-    "yargs": "^15.3.1"
-  },
-  "dependencies": {
-    "react-transition-group": "^4.3.0"
-  }
+    "name": "pui",
+    "version": "1.0.0",
+    "description": "a ui for preact",
+    "main": "index.js",
+    "scripts": {
+        "test": "test",
+        "build": "webpack --config webpack.config.js -name robin --enviroment production",
+        "dev": "webpack-dev-server --config webpack.config.js --enviroment development"
+    },
+    "keywords": [
+        "react",
+        "ui",
+        "typescript"
+    ],
+    "files": [
+        "lib/",
+        "dist/"
+    ],
+    "alias": {
+        "react": "preact/compat",
+        "react-dom/test-utils": "preact/test-utils",
+        "react-dom": "preact/compat"
+    },
+    "author": "robin",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/cli": "^7.8.4",
+        "@babel/core": "^7.9.0",
+        "@babel/plugin-proposal-class-properties": "^7.8.3",
+        "@babel/polyfill": "^7.8.7",
+        "@babel/preset-env": "^7.9.5",
+        "@babel/preset-react": "^7.9.4",
+        "@types/react": "^16.9.34",
+        "@types/react-dom": "^16.9.6",
+        "@types/react-transition-group": "^4.2.4",
+        "babel-loader": "^8.1.0",
+        "babel-plugin-transform-react-jsx": "^6.24.1",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-react": "^6.24.1",
+        "clean-webpack-plugin": "^3.0.0",
+        "css-loader": "^3.5.2",
+        "ersa-modal": "^1.0.0",
+        "file-loader": "^6.0.0",
+        "friendly-errors-webpack-plugin": "^1.7.0",
+        "html-webpack-plugin": "^4.2.0",
+        "jest": "^25.4.0",
+        "less": "^3.11.1",
+        "less-loader": "^5.0.0",
+        "mini-css-extract-plugin": "^0.9.0",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-router-dom": "^5.1.2",
+        "ts-loader": "^6.2.2",
+        "tslint": "^6.1.2",
+        "typescript": "^3.8.3",
+        "url-loader": "^4.1.0",
+        "webpack": "^4.43.0",
+        "webpack-cli": "^3.3.11",
+        "webpack-dev-server": "^3.10.3",
+        "yargs": "^15.3.1"
+    },
+    "dependencies": {
+        "react-transition-group": "^4.3.0"
+    }
 }

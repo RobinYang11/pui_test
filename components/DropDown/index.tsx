@@ -1,33 +1,55 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-
-interface IDropDownProps{
-  visible:boolean;
-  children?:any;
+interface IDropDownProps {
+  children?: any;
+  content?: any;
+  triggerEventType?: string;
 }
 
-function DropDown(props:IDropDownProps){
+function DropDown(props: IDropDownProps) {
 
-  const [state,setState]=useState({
-    visible:props.visible,
-  })
-  
-  useEffect(()=>{
-    setState({
-      ...state,
-      visible:props.visible,
+  const [state, setState] = useState({
+    visible: false
+  });
+
+  const triggerRef = useRef(null);
+
+
+  useEffect(() => {
+
+    const dom: HTMLSpanElement = triggerRef.current
+    dom.addEventListener('click', () => {
+      if (state.visible) {
+        setState({
+          visible: false,
+        })
+      }
     })
-  },[props.visible])
+  }, [])
 
-  return(
+  return (
     <div role="doucment">
+      <span
+        ref={triggerRef}
+        onClick={() => {
+          setState({
+            visible: !state.visible,
+          })
+        }}
+      >
+        {
+          props.children
+        }
+      </span>
       {
-        props.visible ?
-        <div>
-          {
-            props.children
-          }
-        </div> : null
+        state.visible ?
+          (
+            <div onClick={e => { console.log(e.target); e.stopPropagation(); }} className="dropdown">
+              {
+                props.content
+              }
+            </div>
+          ) : null
       }
     </div>
   )

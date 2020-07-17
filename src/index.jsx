@@ -4,9 +4,10 @@ import '../static/iconfont';
 import './index.less';
 import '../static/iconfont.css'
 import Robin from '../components/index';
-import DropDown from '../components/DropDown/index';
+// import DropDown from '../components/DropDown/index';
+import ErsaModal from 'ersa-modal';
 
-const { Modal, Button,Window } = Robin.components;
+const { Modal, Button, Window } = Robin.components;
 const { Provider, Consumer } = React.createContext({});
 
 class App extends React.Component {
@@ -30,29 +31,14 @@ class App extends React.Component {
   render() {
     return (
       <div style={{ padding: "20px" }}>
-        <span className="icon-close"></span>
-        <Button
-          type="default"
-          onClick={this.toggle}>
-          open modal
-        </Button>
-        <Modal
-          title="这是标题"
-          locale="zh"
-          onClose={() => { this.setState({ visible: false }) }}
-          visible={this.state.visible}
-        >
-          <h5>这是内容</h5>
-          <h5>这是内容</h5>
-          <h5>这是内容</h5>
-          <h5>这是内容</h5>
-          <h5>这是内容</h5>
-          <h5>这是内容</h5>
-          <h5>这是内容</h5>
-          <h5>这是内容</h5>
-          <h5>这是内容</h5>
-        </Modal>
-        <DropDown/>
+        <ErsaModal visible={this.state.visible} onCancel={() => { this.hide() }} >
+          <div>
+            <h3>this is ersa modal</h3>
+            <div>
+              test
+            </div>
+          </div>
+        </ErsaModal>
       </div>
     )
   }
