@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background: rgb(184, 182, 182);
+        }
+
+        #container {
+            position: relative;
+            height: 600px;
+            width: 600px;
+        }
+
+        .bin,
+        .guo {
+            position: absolute;
+        }
+
+        .bin {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: white;
+            z-index: 100;
+        }
+
+        .bin:nth-child(1) {
+            left: 100px;
+        }
+
+        .bin:nth-child(2) {
+            left: 210px;
+        }
+
+        .bin:nth-child(3) {
+            left: 320px;
+        }
+
+        .bin:nth-child(4) {
+            left: 430px;
+        }
+
+        .bin:nth-child(5) {
+            left: 540px;
+        }
+
+        .bin:nth-child(6) {
+            left: 650px;
+        }
+
+
+        .guo {
+            top: 200px;
+            height: 210px;
+            width: 210px;
+            border-radius: 50%;
+            background: gray;
+            border: 10px solid black;
+        }
+    </style>
+</head>
+<div id="container">
+    <div class="bin">
+    </div>
+    <div class="bin"></div>
+    <div class="bin"></div>
+    <div class="bin"></div>
+    <div class="bin"></div>
+    <div class="bin"></div>
+    <div class="bin"></div>
+    <div class="guo">
+    </div>
+</div>
+<button onclick="start();">开始</button>
+<div id="timer">
+    03:00:00
+</div>
+<script>
+
+    var container = document.getElementById("contianer")
+
+    //是否正在烙饼
+    var isDoing = false;
+
+
+
+    function bin() {
+        this.zheng = false;
+        this.fan = false;
+        this.x = 0;
+        this.y = 0;
+        this.dom = null;
+    }
+
+    var bins = document.querySelectorAll('.bin')
+    // var gou = document.querySelector('.guo')[0]
+    // console.log(guo.clientX);
+    // console.log(guo.clientY)
+    console.log("###total", bins.length)
+
+    bins.forEach(i => {
+        let zheng, fan = false;
+        let isDrag = false;
+        var x, y;//存储div的坐标
+        i.addEventListener('mousedown', function (e) {
+            console.log(e.clientX);
+            console.log(e.target.offsetLeft)
+            console.log(e.target.offsetTop)
+            console.log(e.clientY)
+            e.target.style.border = "1px solid red";
+            e.target.style.zIndex = 1000;
+            x = e.clientX - e.target.offsetLeft;
+            y = e.clientY - e.target.offsetTop;
+            isDrag = true;
+        })
+
+
+        i.addEventListener('mousemove', function (e) {
+            if (isDrag) {
+                console.log(e.clientX);
+                console.log(e.clientY);
+                var moveX = e.clientX - x;
+                var moveY = e.clientY - y;
+                e.target.style.left = moveX + 'px'
+                e.target.style.top = moveY + 'px'
+
+            }
+        })
+
+        i.addEventListener('mouseup', function (e) {
+            console.log(e.clientX)
+            console.log(e.clientY)
+            e.target.style.border = "none"
+            e.target.style.zIndex = 100;
+            console.log("roibn")
+            isDrag = false;
+        })
+
+    })
+
+    function start() {
+        // let time = 180;
+        let timer = document.getElementById("timer")
+        let time = 180
+
+        setInterval(() => {
+            let seconds = parseInt(time / 3)
+            let mseconds = time % 3
+            time -= 1;
+            timer.innerHTML = seconds + ":" + mseconds;
+        }, 1000)
+    }
+</script>
+</body>
+
+</html>
